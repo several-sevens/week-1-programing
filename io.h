@@ -11,8 +11,4 @@ typedef struct {
     double power_factor;
     double thd_percent;
 } csvread;
-double compute_phase_A_rms(csvread* data, int num_samples);
-double compute_phase_B_rms(csvread* data, int num_samples);
-double compute_phase_C_rms(csvread* data, int num_samples);
-
 #endif
