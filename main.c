@@ -8,7 +8,7 @@ csvread * load_csv(char * str);
 int main(int argc, char *argv[]) {
 
     if (argc != 2) {
-        printf("Usage: ./power_analyser <filename.csv>\n");
+        printf("Cannot find csv file!\n");
         return 1;
     }
 
