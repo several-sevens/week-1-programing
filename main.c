@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
 
     if (argc != 2) {
         printf("Usage: ./power_analyser <filename.csv>\n");
-        return 1; // Exit with an error code
+        return 1;
     }
 
     printf("Loading data from %s...\n", argv[1]);

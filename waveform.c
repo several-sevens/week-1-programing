@@ -2,7 +2,6 @@
 #include "io.h"
 #include <math.h>
 #include <stdio.h>
-#include <stdarg.h>
 
 // rms calc _____________________________________________________________________________
 double compute_phase_A_rms(csvread* data, int num_samples) {
@@ -102,6 +101,7 @@ double compute_phase_C_ptp(csvread* data, int num_samples) {
     return max-min;
 }
 
+//clipping ___________________________________________________________________________________________
 void clipping(csvread* data, int num_samples) {
     int clipped_samples = 0;
 
