@@ -53,6 +53,10 @@ int main(int argc, char *argv[]) {
 
     check_compliance(phase_a_rms, phase_b_rms, phase_c_rms);
 
+    write_results("results.txt",
+              phase_a_rms, phase_b_rms, phase_c_rms,
+              phase_a_dc,  phase_b_dc,  phase_c_dc,
+              phase_a_ptp, phase_b_ptp, phase_c_ptp);
 
     free(data);
     printf("\nMemory freed safely. End of program.\n");

@@ -39,4 +39,46 @@ waveformsample* load_csv(char* filename) {
     fclose(fp);
     return csv;
 }
+void write_results(const char* filename,
+                   double rms_a, double rms_b, double rms_c,
+                   double dc_a, double dc_b, double dc_c,
+                   double ptp_a, double ptp_b, double ptp_c) {
 
+    FILE* fp = fopen(filename, "w");
+    if (fp == NULL) {
+        printf("Error: could not write to %s\n", filename);
+        return;
+    }
+
+    double nominal = 230.0;
+    double lower = nominal * 0.90;
+    double upper = nominal * 1.10;
+
+    fprintf(fp, "=== Power Quality Analysis Report ===\n\n");
+
+    fprintf(fp, "--- RMS Voltage ---\n");
+    fprintf(fp, "Phase A: %.2f V\n", rms_a);
+    fprintf(fp, "Phase B: %.2f V\n", rms_b);
+    fprintf(fp, "Phase C: %.2f V\n", rms_c);
+
+    fprintf(fp, "\n--- DC Offset ---\n");
+    fprintf(fp, "Phase A: %.2f V\n", dc_a);
+    fprintf(fp, "Phase B: %.2f V\n", dc_b);
+    fprintf(fp, "Phase C: %.2f V\n", dc_c);
+
+    fprintf(fp, "\n--- Peak-to-Peak Amplitude ---\n");
+    fprintf(fp, "Phase A: %.2f V\n", ptp_a);
+    fprintf(fp, "Phase B: %.2f V\n", ptp_b);
+    fprintf(fp, "Phase C: %.2f V\n", ptp_c);
+
+    fprintf(fp, "\n--- Tolerance Compliance (230V +/-10%%) ---\n");
+    fprintf(fp, "Phase A: %.2f V -> %s\n", rms_a,
+        (rms_a >= lower && rms_a <= upper) ? "PASS" : "FAIL");
+    fprintf(fp, "Phase B: %.2f V -> %s\n", rms_b,
+        (rms_b >= lower && rms_b <= upper) ? "PASS" : "FAIL");
+    fprintf(fp, "Phase C: %.2f V -> %s\n", rms_c,
+        (rms_c >= lower && rms_c <= upper) ? "PASS" : "FAIL");
+
+    fclose(fp);
+    printf("\nResults written to %s\n", filename);
+}

@@ -12,4 +12,11 @@ typedef struct {
     double thd_percent;
 } waveformsample;
 
+void check_compliance(double rms_a, double rms_b, double rms_c);
+
+void write_results(const char* filename,
+                   double rms_a, double rms_b, double rms_c,
+                   double dc_a, double dc_b, double dc_c,
+                   double ptp_a, double ptp_b, double ptp_c);
+
 #endif
