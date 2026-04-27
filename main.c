@@ -3,7 +3,7 @@
 #include "io.h"
 #include "waveform.h"
 
-csvread * load_csv(char * str);
+waveformsample * load_csv(char * str);
 
 int main(int argc, char *argv[]) {
 
@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 
     printf("Loading data from %s...\n", argv[1]);
 
-    csvread* data = load_csv(argv[1]);
+    waveformsample* data = load_csv(argv[1]);
 
     if (data == NULL) {
         printf("Failed to load data. Program closing.\n");
@@ -50,6 +50,8 @@ int main(int argc, char *argv[]) {
     printf("Phase C Peak-to-Peak: %.2f V\n", phase_c_ptp);
 
     clipping(data, num_samples);
+
+    check_compliance(phase_a_rms, phase_b_rms, phase_c_rms);
 
     free(data);
     printf("\nMemory freed safely. End of program.\n");

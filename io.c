@@ -3,7 +3,7 @@
 #include "io.h"
 
 
-csvread* load_csv(char* filename) {
+waveformsample* load_csv(char* filename) {
 
     FILE* fp = fopen(filename, "r");
     if (fp == NULL) {
@@ -11,7 +11,7 @@ csvread* load_csv(char* filename) {
         return NULL;
     }
 
-    csvread *csv = (csvread*)malloc(1000  * sizeof(csvread));
+    waveformsample *csv = (waveformsample*)malloc(1000  * sizeof(waveformsample));
     if (csv == NULL) {
         fclose(fp);
         return NULL;
@@ -39,3 +39,4 @@ csvread* load_csv(char* filename) {
     fclose(fp);
     return csv;
 }
+
