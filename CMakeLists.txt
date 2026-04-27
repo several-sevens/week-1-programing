@@ -7,3 +7,5 @@ add_executable(untitled3
         waveform.c
         io.c
         main.c)
+
+configure_file(power_quality_log.csv power_quality_log.csv COPYONLY)
