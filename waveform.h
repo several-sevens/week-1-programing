@@ -18,4 +18,5 @@ void check_compliance(double rms_a, double rms_b, double rms_c);
 
 void clipping(waveformsample* data, int num_samples);
 
+
 #endif

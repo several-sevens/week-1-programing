@@ -140,4 +140,5 @@ void check_compliance(double rms_a, double rms_b, double rms_c) {
 
     printf("Phase C RMS: %.2f V -> %s\n", rms_c,
            (rms_c >= lower && rms_c <= upper) ? "PASS" : "FAIL");
+
 }

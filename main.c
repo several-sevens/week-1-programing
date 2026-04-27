@@ -53,6 +53,7 @@ int main(int argc, char *argv[]) {
 
     check_compliance(phase_a_rms, phase_b_rms, phase_c_rms);
 
+
     free(data);
     printf("\nMemory freed safely. End of program.\n");
 
