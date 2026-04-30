@@ -19,7 +19,7 @@ int main(void) {
     int num_samples = 1000;
     double phase_a_rms = compute_phase_A_rms(data, num_samples);
     double phase_b_rms = compute_phase_B_rms(data, num_samples);
-    double phase_c``_rms = compute_phase_C_rms(data, num_samples);
+    double phase_c_rms = compute_phase_C_rms(data, num_samples);
 
     double phase_a_dc = compute_phase_A_dc(data, num_samples);
     double phase_b_dc = compute_phase_B_dc(data, num_samples);
