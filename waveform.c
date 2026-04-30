@@ -102,28 +102,23 @@ double compute_phase_C_ptp(waveformsample* data, int num_samples) {
 }
 
 //clipping ___________________________________________________________________________________________
-void clipping(waveformsample* data, int num_samples) {
-    int clipped_samples = 0;
-
-    printf(" clipping analisis \n");
-
-    printf("      phase A      voltage B      voltage C  \n");
+void clipping(waveformsample* data, int num_samples, int* clip_a, int* clip_b, int* clip_c) {
+    *clip_a = 0;
+    *clip_b = 0;
+    *clip_c = 0;
 
     for (int i = 0; i < num_samples; i++) {
-        if (fabs(data[i].phase_A_voltage) >= 324.9) {
-            printf(" %11.2f %11s %11s \n", data[i].phase_A_voltage, "-", "-");
-            clipped_samples++;
-        }
-        if (fabs(data[i].phase_B_voltage) >= 324.9) {
-            printf(" %11s %12.2f %10s \n", "-", data[i].phase_B_voltage, "-");
-            clipped_samples++;
-        }
-        if (fabs(data[i].phase_C_voltage) >= 324.9) {
-            printf(" %11s %11s %16.2f \n", "-", "-", data[i].phase_C_voltage);
-            clipped_samples++;
-        }
+        if (fabs(data[i].phase_A_voltage) >= 324.9) (*clip_a)++;
+        if (fabs(data[i].phase_B_voltage) >= 324.9) (*clip_b)++;
+        if (fabs(data[i].phase_C_voltage) >= 324.9) (*clip_c)++;
     }
+
+    printf("\n Clipping Detection \n");
+    printf("Phase A: %d clipped samples\n", *clip_a);
+    printf("Phase B: %d clipped samples\n", *clip_b);
+    printf("Phase C: %d clipped samples\n", *clip_c);
 }
+
 // tolerance check _______________________________________________________________________________________
 void check_compliance(double rms_a, double rms_b, double rms_c) {
     double nominal = 230.0;

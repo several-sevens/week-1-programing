@@ -16,7 +16,7 @@ double compute_phase_C_ptp(waveformsample* data, int num_samples);
 
 void check_compliance(double rms_a, double rms_b, double rms_c);
 
-void clipping(waveformsample* data, int num_samples);
+void clipping(waveformsample* data, int num_samples, int* clip_a, int* clip_b, int* clip_c);
 
 
 #endif

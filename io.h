@@ -17,6 +17,7 @@ waveformsample* load_csv(void);
 void write_results(const char* filename,
                    double rms_a, double rms_b, double rms_c,
                    double dc_a, double dc_b, double dc_c,
-                   double ptp_a, double ptp_b, double ptp_c);
+                   double ptp_a, double ptp_b, double ptp_c,
+                   int clip_a, int clip_b, int clip_c);
 
 #endif

@@ -44,7 +44,8 @@ waveformsample* load_csv(void) {
 void write_results(const char* filename,
                    double rms_a, double rms_b, double rms_c,
                    double dc_a, double dc_b, double dc_c,
-                   double ptp_a, double ptp_b, double ptp_c) {
+                   double ptp_a, double ptp_b, double ptp_c,
+                   int clip_a, int clip_b, int clip_c) {
 
     FILE* fp = fopen(filename, "w");
     if (fp == NULL) {
@@ -57,6 +58,14 @@ void write_results(const char* filename,
     double upper = nominal * 1.10;
 
     fprintf(fp, "=== Power Quality Analysis Report ===\n\n");
+
+    fprintf(fp, "\n--- Tolerance Compliance (230V +/-10%%) ---\n");
+    fprintf(fp, "Phase A: %.2f V -> %s\n", rms_a,
+        (rms_a >= lower && rms_a <= upper) ? "PASS" : "FAIL");
+    fprintf(fp, "Phase B: %.2f V -> %s\n", rms_b,
+        (rms_b >= lower && rms_b <= upper) ? "PASS" : "FAIL");
+    fprintf(fp, "Phase C: %.2f V -> %s\n", rms_c,
+        (rms_c >= lower && rms_c <= upper) ? "PASS" : "FAIL");
 
     fprintf(fp, "--- RMS Voltage ---\n");
     fprintf(fp, "Phase A: %.2f V\n", rms_a);
@@ -73,13 +82,10 @@ void write_results(const char* filename,
     fprintf(fp, "Phase B: %.2f V\n", ptp_b);
     fprintf(fp, "Phase C: %.2f V\n", ptp_c);
 
-    fprintf(fp, "\n--- Tolerance Compliance (230V +/-10%%) ---\n");
-    fprintf(fp, "Phase A: %.2f V -> %s\n", rms_a,
-        (rms_a >= lower && rms_a <= upper) ? "PASS" : "FAIL");
-    fprintf(fp, "Phase B: %.2f V -> %s\n", rms_b,
-        (rms_b >= lower && rms_b <= upper) ? "PASS" : "FAIL");
-    fprintf(fp, "Phase C: %.2f V -> %s\n", rms_c,
-        (rms_c >= lower && rms_c <= upper) ? "PASS" : "FAIL");
+    fprintf(fp, "\n--- Clipping Detection ---\n");
+    fprintf(fp, "Phase A: %d clipped samples\n", clip_a);
+    fprintf(fp, "Phase B: %d clipped samples\n", clip_b);
+    fprintf(fp, "Phase C: %d clipped samples\n", clip_c);
 
     fclose(fp);
     printf("\nResults written to %s\n", filename);

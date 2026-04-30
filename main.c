@@ -35,22 +35,25 @@ int main(void) {
     printf("Phase B RMS Voltage: %.2f V\n", phase_b_rms);
     printf("Phase C RMS Voltage: %.2f V\n", phase_c_rms);
 
-    printf("Phase A dc Voltage: %.2f V\n", phase_a_dc);
+    printf("\nPhase A dc Voltage: %.2f V\n", phase_a_dc);
     printf("Phase B dc Voltage: %.2f V\n", phase_b_dc);
     printf("Phase C dc Voltage: %.2f V\n", phase_c_dc);
 
-    printf("Phase A Peak-to-Peak: %.2f V\n", phase_a_ptp);
+    printf("\nPhase A Peak-to-Peak: %.2f V\n", phase_a_ptp);
     printf("Phase B Peak-to-Peak: %.2f V\n", phase_b_ptp);
     printf("Phase C Peak-to-Peak: %.2f V\n", phase_c_ptp);
 
-    clipping(data, num_samples);
 
     check_compliance(phase_a_rms, phase_b_rms, phase_c_rms);
 
+    int clip_a, clip_b, clip_c;
+    clipping(data, num_samples, &clip_a, &clip_b, &clip_c);
+
     write_results("results.txt",
-              phase_a_rms, phase_b_rms, phase_c_rms,
-              phase_a_dc,  phase_b_dc,  phase_c_dc,
-              phase_a_ptp, phase_b_ptp, phase_c_ptp);
+                  phase_a_rms, phase_b_rms, phase_c_rms,
+                  phase_a_dc,  phase_b_dc,  phase_c_dc,
+                  phase_a_ptp, phase_b_ptp, phase_c_ptp,
+                  clip_a, clip_b, clip_c);
 
     free(data);
     printf("\nMemory freed safely. End of program.\n");
