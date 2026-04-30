@@ -1,0 +1,21 @@
+=== Power Quality Analysis Report ===
+
+--- RMS Voltage ---
+Phase A: 229.81 V
+Phase B: 229.81 V
+Phase C: 229.81 V
+
+--- DC Offset ---
+Phase A: -0.00 V
+Phase B: 0.00 V
+Phase C: -0.00 V
+
+--- Peak-to-Peak Amplitude ---
+Phase A: 650.00 V
+Phase B: 649.86 V
+Phase C: 649.86 V
+
+--- Tolerance Compliance (230V +/-10%) ---
+Phase A: 229.81 V -> PASS
+Phase B: 229.81 V -> PASS
+Phase C: 229.81 V -> PASS

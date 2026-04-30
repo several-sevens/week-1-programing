@@ -3,18 +3,12 @@
 #include "io.h"
 #include "waveform.h"
 
-waveformsample * load_csv(char * str);
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
-    if (argc != 2) {
-        printf("Cannot find csv file!\n");
-        return 1;
-    }
+    printf("Loading data from power_quality_log.csv...\n");
 
-    printf("Loading data from %s...\n", argv[1]);
-
-    waveformsample* data = load_csv(argv[1]);
+    waveformsample* data = load_csv();
 
     if (data == NULL) {
         printf("Failed to load data. Program closing.\n");
@@ -25,7 +19,7 @@ int main(int argc, char *argv[]) {
     int num_samples = 1000;
     double phase_a_rms = compute_phase_A_rms(data, num_samples);
     double phase_b_rms = compute_phase_B_rms(data, num_samples);
-    double phase_c_rms = compute_phase_C_rms(data, num_samples);
+    double phase_c``_rms = compute_phase_C_rms(data, num_samples);
 
     double phase_a_dc = compute_phase_A_dc(data, num_samples);
     double phase_b_dc = compute_phase_B_dc(data, num_samples);

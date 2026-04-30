@@ -3,11 +3,13 @@
 #include "io.h"
 
 
-waveformsample* load_csv(char* filename) {
+waveformsample* load_csv(void) {
 
-    FILE* fp = fopen(filename, "r");
+        FILE* fp = fopen("power_quality_log.csv", "r");
+    if (fp == NULL)
+        fp = fopen("../power_quality_log.csv", "r");
     if (fp == NULL) {
-        printf("Could not open file %s\n", filename);
+        printf("Could not open power_quality_log.csv\n");
         return NULL;
     }
 
